@@ -1,0 +1,41 @@
+name: Run Databricks Notebook
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    run-notebook:
+        runs-on: ubuntu-latest
+
+        steps:
+        - name: Checkout repository
+            uses: actions/checkout@v2
+
+        - name: Run Databricks Notebook
+            id: run-notebook
+            uses: databricks/run-notebook@v0.2.0
+            with:
+                databricks-host: 'https://adb-3280056724355955.15.azuredatabricks.net/'
+                databricks-token: 'dapi77e90e5f962ab1333f97738b55568d2e-3'
+                notebook-path: 'demo/test'
+                existing-cluster-id: '1030-230645-6lgp1r1a'
+
+        - name: Get Notebook Run Status
+            run: echo "Notebook run status: ${{ steps.run-notebook.outputs.run-status }}"
+
+        - name: Get Notebook Output
+            run: echo "Notebook output: ${{ steps.run-notebook.outputs.notebook-output }}"
+            - name: Wait for Notebook Run to Complete
+                uses: databricks/wait-notebook@v0.2.0
+                with:
+                databricks-host: ${{ secrets.DATABRICKS_HOST }}
+                databricks-token: ${{ secrets.DATABRICKS_TOKEN }}
+                run-id: ${{ steps.run-notebook.outputs.run-id }}
+
+            - name: Get Notebook Run Status
+                run: echo "Notebook run status: ${{ steps.run-notebook.outputs.run-status }}"
+
+            - name: Get Notebook Output
+                run: echo "Notebook output: ${{ steps.run-notebook.outputs.notebook-output }}"
