@@ -21,7 +21,7 @@ jobs:
               with:
                 databricks-host: ${{ env.DATABRICKS_HOST }}
                 databricks-token: ${{ env.DATABRICKS_TOKEN }}
-                notebook-path: /path/to/your/notebook
+                workspace-notebook-path: ${{ env.NOTEBOOK_PATH }}
                 existing-cluster-id: ${{ env.EXISTING_CLUSTER_ID }}
 
             - name: Wait for Notebook Run to Complete
