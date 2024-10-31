@@ -34,11 +34,11 @@ jobs:
 
             - name: Check Notebook Output
               run: |
-                status=$(jq -r '.test_summary_status' < notebook_output_${{ steps.run-notebook.outputs.run_id }}.json)
-                if [ "$status" = "FAIL" ]; then
+                status=$(jq -r '.test_summary_status' notebook_output_${{ steps['run-notebook'].outputs['run_id'] }}.json)
+                if [[ "$status" == "FAIL" ]]; then
                     echo "Notebook test failed"
                     exit 1
                 else
                     echo "Notebook test passed"
-                  fi
-                shell: bash
+                fi
+              shell: bash
