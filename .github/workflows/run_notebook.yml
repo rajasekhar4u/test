@@ -39,5 +39,5 @@ jobs:
                     exit 1
                 else
                     echo "Notebook test passed"
-                fi
+                  fi
                 shell: bash
