@@ -25,11 +25,14 @@ jobs:
                 existing-cluster-id: ${{ env.EXISTING_CLUSTER_ID }}
 
             - name: Wait for Notebook Run to Complete
-              uses: databricks/wait-notebook@v0.0.3
-              with:
-                databricks-host: ${{ env.DATABRICKS_HOST }}
-                databricks-token: ${{ env.DATABRICKS_TOKEN }}
-                run-id: ${{ steps.run-notebook.outputs.run-id }}
+              run: |
+                while true; do
+                  status=$(databricks runs get --run-id ${{ steps.run-notebook.outputs.run-id }} --token ${{ env.DATABRICKS_TOKEN }} --host ${{ env.DATABRICKS_HOST }} | jq -r '.state.life_cycle_state')
+                  if [ "$status" == "TERMINATED" ] || [ "$status" == "SKIPPED" ] || [ "$status" == "INTERNAL_ERROR" ]; then
+                    break
+                  fi
+                  sleep 10
+                done
 
             - name: Get Notebook Run Status
               run: "echo 'Notebook run status: ${{ steps.run-notebook.outputs.run-status }}'"
