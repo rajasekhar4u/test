@@ -1,0 +1,28 @@
+name: Run Databricks Local Notebook
+
+on:
+    push:
+        branches:
+            - main
+jobs:
+    run-notebook:
+        runs-on: ubuntu-latest
+        env:
+            DATABRICKS_HOST: 'https://adb-3280056724355955.15.azuredatabricks.net/'
+            DATABRICKS_TOKEN: 'dapi77e90e5f962ab1333f97738b55568d2e-3'
+            NOTEBOOK_PATH: 'Demo/test'
+            EXISTING_CLUSTER_ID: '1030-230645-6lgp1r1a'
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Run Databricks Notebook
+              id: run-notebook
+              uses: databricks/run-notebook@v0.0.3
+              with:
+                databricks-host: ${{ env.DATABRICKS_HOST }}
+                databricks-token: ${{ env.DATABRICKS_TOKEN }}
+                local-notebook-path: ${{ env.NOTEBOOK_PATH }}
+                existing-cluster-id: ${{ env.EXISTING_CLUSTER_ID }}
+
+            - name: Get Notebook Output
+              run: 'echo "Notebook output: ${{ steps.run-notebook.outputs.notebook-output }}"'
