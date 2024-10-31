@@ -23,5 +23,5 @@ jobs:
             DATABRICKS_HOST: 'https://adb-3280056724355955.15.azuredatabricks.net/'
             DATABRICKS_TOKEN: 'dapi77e90e5f962ab1333f97738b55568d2e-3'
         run: |
-          nutter run /Workspace/demo/test* $CLUSTER --timeout 1800 --max_parallel_tests 3 --junit_report
+          nutter run /Workspace/demo/test_* $CLUSTER --timeout 1800 --max_parallel_tests 3 --junit_report
           # coverage is not compatible with nutter executor
