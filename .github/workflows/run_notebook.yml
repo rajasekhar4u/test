@@ -31,7 +31,10 @@ jobs:
             - name: Save Notebook Output
               run: |
                 echo "${{ steps['run-notebook'].outputs['notebook-output'] }}" > notebook_output.json
-
+                - name: Read and Print Notebook Output
+                  run: |
+                    cat notebook_output.json
+                    
             - name: check Notebook Output
               run: |
                 status=$(jq -r '.test_summary_status' ${{ steps.run-notebook.outputs.notebook-output }})
