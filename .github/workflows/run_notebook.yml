@@ -1,7 +1,7 @@
 name: Run Databricks Notebook
 
 on:
-    pull_request:
+    push:
         branches:
             - main
 jobs:
@@ -25,4 +25,6 @@ jobs:
                 existing-cluster-id: ${{ env.EXISTING_CLUSTER_ID }}
 
             - name: Get Notebook Output
-              run: 'echo "Notebook output: ${{ steps.run-notebook.outputs.notebook-output }}"'
+              run: |
+                echo "Notebook output: ${{ steps.run-notebook.outputs.notebook-output }}"
+                echo "${{ steps.run-notebook.outputs.notebook-output }}" > notebook_output_${{ steps.run-notebook.outputs.run_id }}.json
