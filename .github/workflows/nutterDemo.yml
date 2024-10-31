@@ -1,7 +1,6 @@
 # Starter Nutter pipeline
 
-trigger:
-- develop
+'on': push
 
 pool:
   vmImage: 'ubuntu-latest'
