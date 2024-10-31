@@ -24,8 +24,5 @@ jobs:
                 workspace-notebook-path: ${{ env.NOTEBOOK_PATH }}
                 existing-cluster-id: ${{ env.EXISTING_CLUSTER_ID }}
 
-            - name: Get Notebook Run Status
-              run: "echo 'Notebook run status: ${{ steps.run-notebook.outputs.notebook_run_status }}'"
-
             - name: Get Notebook Output
               run: 'echo "Notebook output: ${{ steps.run-notebook.outputs.notebook-output }}"'
