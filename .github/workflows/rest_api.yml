@@ -27,13 +27,13 @@ jobs:
         EXISTING_CLUSTER_ID=${{ env.EXISTING_CLUSTER_ID }}
         JOB_ID=$(curl -X POST -H "Authorization: Bearer $DATABRICKS_TOKEN" \
           -H "Content-Type: application/json" \
-          -d '{
-                "run_name": "GitHub Actions Run",
-                "existing_cluster_id": "$EXISTING_CLUSTER_ID",
-                "notebook_task": {
-                  "notebook_path": "$NOTEBOOK_PATH"
+          -d "{
+                \"run_name\": \"GitHub Actions Run\",
+                \"existing_cluster_id\": \"$EXISTING_CLUSTER_ID\",
+                \"notebook_task\": {
+                  \"notebook_path\": \"$NOTEBOOK_PATH\"
                 }
-              }' \
+              }" \
           $DATABRICKS_HOST/api/2.0/jobs/runs/submit | jq -r '.run_id')
 
         echo "Notebook run ID: $JOB_ID"
