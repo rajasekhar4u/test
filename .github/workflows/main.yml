@@ -1,5 +1,5 @@
 name: Run a notebook within its repo on PRs
-'on': push
+'on': pull_request
 env:
   DATABRICKS_HOST: 'https://adb-3280056724355955.15.azuredatabricks.net/'
 jobs:
