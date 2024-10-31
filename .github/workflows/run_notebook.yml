@@ -38,7 +38,7 @@ jobs:
 
             - name: check Notebook Output
               run: |
-                status=$(jq -r '.test_summary_status' notebook_output.json)
+                status=$(jq -r '.test_summary_status // empty' notebook_output.json)
                 echo "Notebook run status: $status"
 
                 if [[ "$status" != "SUCCESS" ]]; then
