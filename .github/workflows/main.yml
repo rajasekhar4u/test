@@ -15,9 +15,9 @@ jobs:
       - name: Trigger model training notebook from PR branch
         uses: databricks/run-notebook@v0
         with:
-          local-notebook-path: test/Demo/test
+          local-notebook-path: 'test/Demo/test'
           git-commit: '${{ github.event.pull_request.head.sha || github.sha }}'
-          existing-cluster-id: 1030-230645-6lgp1r1a
+          existing-cluster-id: '1030-230645-6lgp1r1a'
           access-control-list-json: |
             [
               {
