@@ -2,6 +2,9 @@
 
 'on': push
 
+'trigger':
+- develop
+
 pool:
   vmImage: 'ubuntu-latest'
 
