@@ -1,4 +1,4 @@
-name: Run Databricks Notebook
+name: Run Databricks API Notebook
 
 on:
   pull_request:
