@@ -2,32 +2,16 @@
 
 'on': push
 
-'trigger':
-- develop
-
-pool:
-  vmImage: 'ubuntu-latest'
-
-steps:
-- task: UsePythonVersion@0
-  inputs:
-    versionSpec: '3.5'
-
-- script: |
-    pip install nutter
-  displayName: 'Install Nutter'
-
-- script: |
-    nutter run /Shared/ $CLUSTER --recursive --junit_report
-  displayName: 'Execute Nutter'
-  env:
-      CLUSTER: $(clusterID)
-      DATABRICKS_HOST: $(databricks_host)
-      DATABRICKS_TOKEN: $(databricks_token)
-
-- task: PublishTestResults@2
-  inputs:
-    testResultsFormat: 'JUnit'
-    testResultsFiles: '**/test-*.xml'
-    testRunTitle: 'Publish Nutter results'
-  condition: succeededOrFailed()
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+            python -m pip install --upgrade pip
+            pip install nutter
