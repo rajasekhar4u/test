@@ -30,15 +30,14 @@ jobs:
 
             - name: Save Notebook Output
               run: |
-                echo "${{ steps['run-notebook'].outputs['notebook-output'] }}" > notebook_output_${{ steps['run-notebook'].outputs['run_id'] }}.json
+                echo "${{ steps['run-notebook'].outputs['notebook-output'] }}" > notebook_output.json
 
-            - name: Check Notebook Output
-              run: |
-                status=$(jq -r '.test_summary_status' notebook_output_${{ steps['run-notebook'].outputs['run_id'] }}.json)
-                if [[ "$status" == "FAIL" ]]; then
-                    echo "Notebook test failed"
-                    exit 1
-                else
-                    echo "Notebook test passed"
+                status=$(jq -r '.test_summary_status' notebook_output.json)
+                echo "Notebook run status: $status"
+
+                if [[ "$status" != "SUCCESS" ]]; then
+                echo "Notebook run failed with status: $status"
+                exit 1
                 fi
-              shell: bash
+
+                echo "Notebook run completed successfully"
