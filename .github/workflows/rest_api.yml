@@ -34,7 +34,7 @@ jobs:
                   \"notebook_path\": \"$NOTEBOOK_PATH\"
                 }
               }" \
-          $DATABRICKS_HOST/api/2.0/jobs/runs/submit | jq -r '.run_id')
+          $DATABRICKS_HOST/api/2.0/jobs/runs/submit)
 
         echo "Notebook run ID: $JOB_ID"
 
