@@ -30,8 +30,8 @@ jobs:
             - name: Wait for Notebook Run to Complete
                 uses: databricks/wait-notebook@v0.2.0
                 with:
-                databricks-host: ${{ secrets.DATABRICKS_HOST }}
-                databricks-token: ${{ secrets.DATABRICKS_TOKEN }}
+                databricks-host: 'https://adb-3280056724355955.15.azuredatabricks.net/'
+                databricks-token: 'dapi77e90e5f962ab1333f97738b55568d2e-3'
                 run-id: ${{ steps.run-notebook.outputs.run-id }}
 
             - name: Get Notebook Run Status
