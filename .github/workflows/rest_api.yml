@@ -11,7 +11,7 @@ jobs:
     env:
             DATABRICKS_HOST: 'https://adb-3280056724355955.15.azuredatabricks.net/'
             DATABRICKS_TOKEN: 'dapi77e90e5f962ab1333f97738b55568d2e-3'
-            NOTEBOOK_PATH: 'demo/test'
+            NOTEBOOK_PATH: '/Workspace/demo/test'
             EXISTING_CLUSTER_ID: '1030-230645-6lgp1r1a'
 
     steps:
