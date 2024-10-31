@@ -25,7 +25,7 @@ jobs:
                 existing-cluster-id: ${{ env.EXISTING_CLUSTER_ID }}
 
             - name: Get Notebook Run Status
-              run: "echo 'Notebook run status: ${{ steps.run-notebook.outputs.notebook_run_status }}'"
+              run: "echo 'Notebook run status: ${{ steps.run-notebook.outputs }}'"
 
             - name: Get Notebook Output
               run: 'echo "Notebook output: ${{ steps.run-notebook.outputs.notebook-output }}"'
