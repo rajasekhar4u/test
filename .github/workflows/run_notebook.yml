@@ -17,7 +17,7 @@ jobs:
 
             - name: Run Databricks Notebook
               id: run-notebook
-              uses: databricks/run-notebook@v0.1.5
+              uses: databricks/run-notebook@v0.0.3
               with:
                 databricks-host: ${{ env.DATABRICKS_HOST }}
                 databricks-token: ${{ env.DATABRICKS_TOKEN }}
@@ -25,7 +25,7 @@ jobs:
                 existing-cluster-id: ${{ env.EXISTING_CLUSTER_ID }}
 
             - name: Wait for Notebook Run to Complete
-              uses: databricks/wait-notebook@v0.2.0
+              uses: databricks/wait-notebook@v0.0.3
               with:
                 databricks-host: ${{ env.DATABRICKS_HOST }}
                 databricks-token: ${{ env.DATABRICKS_TOKEN }}
