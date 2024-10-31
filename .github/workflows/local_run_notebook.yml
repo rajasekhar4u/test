@@ -1,7 +1,7 @@
 name: Run Databricks Local Notebook
 
 on:
-    push:
+    pull_request:
         branches:
             - main
 jobs:
